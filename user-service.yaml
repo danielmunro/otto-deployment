@@ -17,5 +17,10 @@ spec:
       containers:
         - name: user-service
           image: quay.io/danielmunro/otto-user-service:latest
+          resources:
+            requests:
+              ephemeral-storage: "500Mi"
+            limits:
+              ephemeral-storage: "500Mi"
           ports:
             - containerPort: 8080
