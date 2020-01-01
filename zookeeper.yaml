@@ -19,3 +19,4 @@ spec:
           image: wurstmeister/zookeeper
           ports:
             - containerPort: 2181
+              name: zookeeper
