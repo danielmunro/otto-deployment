@@ -24,3 +24,10 @@ spec:
               ephemeral-storage: "500Mi"
           ports:
             - containerPort: 80
+          env:
+            - name: TARGET_COMMUNITY_SERVICE
+              value: community_service:8081
+            - name: TARGET_USER_SERVICE
+              value: user_service:8080
+            - name: TARGET_IMAGE_SERVICE
+              value: image_service:8082
