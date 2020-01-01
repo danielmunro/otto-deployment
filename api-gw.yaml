@@ -1,0 +1,26 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: api-gw
+  labels:
+    app: api-gw
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: api-gw
+  template:
+    metadata:
+      labels:
+        app: api-gw
+    spec:
+      containers:
+        - name: api-gw
+          image: quay.io/danielmunro/api-gw:latest
+          resources:
+            requests:
+              ephemeral-storage: "500Mi"
+            limits:
+              ephemeral-storage: "500Mi"
+          ports:
+            - containerPort: 80
