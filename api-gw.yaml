@@ -16,7 +16,7 @@ spec:
     spec:
       containers:
         - name: api-gw
-          image: quay.io/danielmunro/api-gw:latest
+          image: quay.io/danielmunro/otto-api-gw:latest
           resources:
             requests:
               ephemeral-storage: "500Mi"
