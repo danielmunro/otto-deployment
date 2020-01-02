@@ -25,3 +25,41 @@ spec:
           ports:
             - containerPort: 8080
               name: user_service
+          volumeMounts:
+            - name: aws_access_key_id
+              mountPath: "/tmp/aws_access_key_id"
+              readOnly: true
+            - name: aws_secret_access_key
+              mountPath: "/tmp/aws_secret_access_key"
+              readOnly: true
+            - name: aws_region
+              mountPath: "/tmp/aws_region"
+              readOnly: true
+            - name: aws_cognito_client_id
+              mountPath: "/tmp/aws_cognito_client_id"
+              readOnly: true
+            - name: aws_user_pool_id
+              mountPath: "/tmp/aws_user_pool_id"
+              readOnly: true
+            - name: kafka_host
+              mountPath: "/tmp/kafka_host"
+              readOnly: true
+      volumes:
+        - name: aws_access_key_id
+          secret:
+            secretName: aws_access_key_id
+        - name: aws_secret_access_key
+          secret:
+            secretName: aws_secret_access_key
+        - name: aws_region
+          secret:
+            secretName: aws_region
+        - name: aws_cognito_client_id
+          secret:
+            secretName: aws_cognito_client_id
+        - name: aws_user_pool_id
+          secret:
+            secretName: aws_user_pool_id
+        - name: kafka_host
+          secret:
+            secretName: kafka_host
