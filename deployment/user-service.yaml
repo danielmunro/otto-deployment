@@ -25,11 +25,59 @@ spec:
           ports:
             - containerPort: 8080
               name: user-service
-          volumeMounts:
-            - name: user-config
-              mountPath: "/tmp/user-config"
-              readOnly: true
-      volumes:
-        - name: user-config
-          secret:
-            secretName: user-config
+          env:
+            - name: COGNITO_CLIENT_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: aws_cognito_client_id
+            - name: USER_POOL_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: aws_user_pool_id
+            - name: AWS_REGION
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: aws_region
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: aws_access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: aws_secret_access_key
+            - name: KAFKA_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: kafka_host
+            - name: PG_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: db_host
+            - name: PG_USER
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: db_user
+            - name: PG_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: db_port
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: db_password
+            - name: PG_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: user-config
+                  key: db_name
