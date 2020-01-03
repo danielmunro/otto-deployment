@@ -24,7 +24,7 @@ spec:
               ephemeral-storage: "500Mi"
           ports:
             - containerPort: 8080
-              name: user_service
+              name: user-service
           volumeMounts:
             - name: user-config
               mountPath: "/tmp/user-config"
