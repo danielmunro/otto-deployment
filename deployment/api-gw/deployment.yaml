@@ -17,11 +17,6 @@ spec:
       containers:
         - name: api-gw
           image: quay.io/danielmunro/otto-api-gw:latest
-          resources:
-            requests:
-              ephemeral-storage: "500Mi"
-            limits:
-              ephemeral-storage: "500Mi"
           ports:
             - containerPort: 80
           env:
