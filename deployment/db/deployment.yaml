@@ -1,24 +1,24 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: postgres
+  name: db
   labels:
-    app: postgres
+    app: db
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: postgres
+      app: db
   template:
     metadata:
       labels:
-        app: postgres
+        app: db
     spec:
       volumes:
         - name: vol
           emptyDir: {}
       containers:
-        - name: postgres
+        - name: db
           image: postgres
           ports:
             - containerPort: 5432

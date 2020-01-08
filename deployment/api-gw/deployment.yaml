@@ -18,11 +18,14 @@ spec:
         - name: api-gw
           image: quay.io/danielmunro/otto-api-gw:latest
           ports:
-            - containerPort: 80
+            - containerPort: 8000
           env:
             - name: TARGET_COMMUNITY_SERVICE
-              value: community_service:8081
+              value: community-service:8081
             - name: TARGET_USER_SERVICE
-              value: user_service:8080
+              value: user-service:8080
             - name: TARGET_IMAGE_SERVICE
-              value: image_service:8082
+              value: image-service:8082
+            - name: TARGET_UI
+              value: ui:3000
+
