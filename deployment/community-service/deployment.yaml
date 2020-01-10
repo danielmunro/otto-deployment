@@ -1,0 +1,68 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: community-service
+  labels:
+    app: community-service
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: community-service
+  template:
+    metadata:
+      labels:
+        app: community-service
+    spec:
+      containers:
+        - name: community-service
+          image: quay.io/danielmunro/otto-community-service:latest
+          resources:
+            requests:
+              ephemeral-storage: "500Mi"
+            limits:
+              ephemeral-storage: "500Mi"
+          ports:
+            - containerPort: 8081
+              name: community_service
+          env:
+            - name: SESSION_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: community-config
+                  key: session_key
+            - name: USER_SERVICE_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: community-config
+                  key: user_service_host
+            - name: KAFKA_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: community-config
+                  key: kafka_host
+            - name: PG_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: community-config
+                  key: db_host
+            - name: PG_USER
+              valueFrom:
+                secretKeyRef:
+                  name: community-config
+                  key: db_user
+            - name: PG_PORT
+              valueFrom:
+                secretKeyRef:
+                  name: community-config
+                  key: db_port
+            - name: PG_PASSWORD
+              valueFrom:
+                secretKeyRef:
+                  name: community-config
+                  key: db_password
+            - name: PG_DBNAME
+              valueFrom:
+                secretKeyRef:
+                  name: community-config
+                  key: db_name
