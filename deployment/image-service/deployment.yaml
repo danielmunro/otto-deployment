@@ -28,7 +28,10 @@ spec:
             - name: USER_SERVICE_HOST
               value: "$(USER_SERVICE_SERVICE_HOST):8080"
             - name: PG_HOST
-              value: "$(DB_SERVICE_HOST):5432"
+              valueFrom:
+                secretKeyRef:
+                  name: image-config
+                  key: db_host
             - name: PG_USER
               valueFrom:
                 secretKeyRef:
