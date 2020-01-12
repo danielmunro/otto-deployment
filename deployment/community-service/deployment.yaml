@@ -24,7 +24,6 @@ spec:
               ephemeral-storage: "500Mi"
           ports:
             - containerPort: 8081
-              name: community_service
           env:
             - name: USER_SERVICE_HOST
               value: "$(USER_SERVICE_SERVICE_HOST):8080"
