@@ -27,6 +27,16 @@ spec:
           env:
             - name: USER_SERVICE_HOST
               value: "$(USER_SERVICE_SERVICE_HOST):8080"
+            - name: AWS_ACCESS_KEY_ID
+              valueFrom:
+                secretKeyRef:
+                  name: image-config
+                  key: aws_access_key_id
+            - name: AWS_SECRET_ACCESS_KEY
+              valueFrom:
+                secretKeyRef:
+                  name: image-config
+                  key: aws_secret_access_key
             - name: PG_HOST
               valueFrom:
                 secretKeyRef:
