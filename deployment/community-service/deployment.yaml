@@ -59,3 +59,8 @@ spec:
                 secretKeyRef:
                   name: image-config
                   key: kafka_host
+            - name: PG_HOST
+              valueFrom:
+                secretKeyRef:
+                  name: community-config
+                  key: db_host
