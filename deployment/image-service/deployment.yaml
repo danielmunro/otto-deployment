@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: image-service
+  name: image
   labels:
-    app: image-service
+    app: image
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: image-service
+      app: image
   template:
     metadata:
       labels:
-        app: image-service
+        app: image
     spec:
       containers:
-        - name: image-service
+        - name: image
           image: quay.io/danielmunro/otto-image-service:latest
           resources:
             requests:
@@ -24,4 +24,8 @@ spec:
               ephemeral-storage: "500Mi"
           ports:
             - containerPort: 8082
-              name: image_service
+          env:
+            - name: USER_SERVICE_HOST
+              value: "$(USER_SERVICE_SERVICE_HOST):8080"
+            - name: KAFKA_HOST
+              value: "$(KAFKA_SERVICE_HOST):9092"
