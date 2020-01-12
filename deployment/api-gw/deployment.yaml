@@ -21,11 +21,11 @@ spec:
             - containerPort: 8000
           env:
             - name: TARGET_COMMUNITY_SERVICE
-              value: community-service:8081
+              value: "$(COMMUNITY_SERVICE_HOST):8081"
             - name: TARGET_USER_SERVICE
-              value: user-service:8080
+              value: "$(USER_SERVICE_SERVICE_HOST):8080"
             - name: TARGET_IMAGE_SERVICE
-              value: image-service:8082
+              value: "$(IMAGE_SERVICE_HOST):8082"
             - name: TARGET_UI
-              value: ui:3000
+              value: "$(UI_SERVICE_HOST):3000"
 

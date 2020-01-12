@@ -1,21 +1,21 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: community-service
+  name: community
   labels:
-    app: community-service
+    app: community
 spec:
   replicas: 1
   selector:
     matchLabels:
-      app: community-service
+      app: community
   template:
     metadata:
       labels:
-        app: community-service
+        app: community
     spec:
       containers:
-        - name: community-service
+        - name: community
           image: quay.io/danielmunro/otto-community-service:latest
           resources:
             requests:
@@ -26,26 +26,17 @@ spec:
             - containerPort: 8081
               name: community_service
           env:
+            - name: USER_SERVICE_HOST
+              value: "$(USER_SERVICE_SERVICE_HOST):8080"
+            - name: KAFKA_HOST
+              value: "$(KAFKA_SERVICE_HOST):9092"
+            - name: PG_HOST
+              value: "$(DB_SERVICE_HOST):5432"
             - name: SESSION_KEY
               valueFrom:
                 secretKeyRef:
                   name: community-config
                   key: session_key
-            - name: USER_SERVICE_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: community-config
-                  key: user_service_host
-            - name: KAFKA_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: community-config
-                  key: kafka_host
-            - name: PG_HOST
-              valueFrom:
-                secretKeyRef:
-                  name: community-config
-                  key: db_host
             - name: PG_USER
               valueFrom:
                 secretKeyRef:
